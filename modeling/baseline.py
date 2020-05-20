@@ -127,6 +127,10 @@ class Baseline(nn.Module):
                               last_stride=last_stride)
         elif model_name == 'resnet50_ibn_a':
             self.base = resnet50_ibn_a(last_stride)
+        elif model_name == 'resnest50':
+            self.base = ResNet(last_stride=last_stride,
+                               block=Bottleneck,
+                               layers=[3,4,6,3])
 
         if pretrain_choice == 'imagenet':
             self.base.load_param(model_path)
